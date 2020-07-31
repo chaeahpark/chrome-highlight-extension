@@ -9,7 +9,8 @@
 	var initSectionByBgColorFromTemplate = function (sectionNodeTemplate, bgColorCode, wordGroupsDict) {
 		var sectionNode = sectionNodeTemplate.cloneNode(true);
 		var handlingIndex = 0;
-		var classNames = ["pure-toggle-checkbox", "pure-toggle", "color-header", "remove-group-button", "highlight-words"];
+		var classNames = ["pure-toggle-checkbox", "pure-toggle", "color-header",
+				  "remove-group-button", "highlight-words"];
 
 		var toggleCheckbox = sectionNode.getElementsByClassName(classNames[handlingIndex])[0];
 		toggleCheckbox.id = classNames[handlingIndex].concat("-", bgColorCode);
@@ -30,7 +31,8 @@
 
 		var removeButton = sectionNode.getElementsByClassName(classNames[handlingIndex])[0];
 		removeButton.dataset.bgColorCode = bgColorCode;
-		removeButton.addEventListener("click", removeGroupHandlerFactory(wordGroupsDict, sectionNode));
+		removeButton.addEventListener("click", 
+					      removeGroupHandlerFactory(wordGroupsDict, sectionNode));
 		handlingIndex++;
 
 		var textarea = sectionNode.getElementsByClassName(classNames[handlingIndex])[0];
@@ -125,20 +127,25 @@
 		var colorGroups = Object.keys(wordGroupsDict);
 		if (colorGroups.length === 0) {
 			colorGroups = ["C72E04", "FA9507", "CACF44", "27AB99"].slice(1);
-			colorGroups.forEach( colorGroup => createNewGroupInDict(wordGroupsDict, colorGroup) );
+			colorGroups.forEach( colorGroup => 
+					    createNewGroupInDict(wordGroupsDict, colorGroup) );
 		}
 
 		// remove template and append initialized sections
 		mainBlock.removeChild(sessionTemplate);
 		colorGroups.forEach(function (bgc) {
-			mainBlock.appendChild(initSectionByBgColorFromTemplate(sessionTemplate, bgc, wordGroupsDict));
+			mainBlock.appendChild(
+				initSectionByBgColorFromTemplate(sessionTemplate, bgc, wordGroupsDict)
+			);
 		});
 		newGroupForm.addEventListener("submit", function (event) {
 			event.preventDefault();
 			if (colorInputBox.value && colorInputBox.value.length > 0 && colorInputBox.checkValidity()) {
 				console.log("submit OK");
 				createNewGroupInDict(wordGroupsDict, colorInputBox.value);
-				mainBlock.appendChild(initSectionByBgColorFromTemplate(sessionTemplate, colorInputBox.value, wordGroupsDict));
+				mainBlock.appendChild(
+					initSectionByBgColorFromTemplate(sessionTemplate, colorInputBox.value, wordGroupsDict)
+				);
 			}
 			console.log("submit");
 		});
