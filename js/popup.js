@@ -6,7 +6,8 @@
 	/*|================================================================|*/
 	/*|                          UI creation                           |*/
 	/*|================================================================|*/
-	var initSectionByBgColorFromTemplate = function (sectionNodeTemplate, bgColorCode, wordGroupsDict) {
+	var initSectionByBgColorFromTemplate = 
+	    function (sectionNodeTemplate, bgColorCode, wordGroupsDict) {
 		var sectionNode = sectionNodeTemplate.cloneNode(true);
 		var handlingIndex = 0;
 		var classNames = ["pure-toggle-checkbox", "pure-toggle", "color-header",
@@ -16,7 +17,9 @@
 		toggleCheckbox.id = classNames[handlingIndex].concat("-", bgColorCode);
 		toggleCheckbox.dataset.bgColor = bgColorCode;
 		toggleCheckbox.checked = wordGroupsDict[bgColorCode].isOn;
-		toggleCheckbox.addEventListener("change", wordGroupToogleHandlerFactory(wordGroupsDict));
+		toggleCheckbox.addEventListener("change", 
+						wordGroupToogleHandlerFactory(wordGroupsDict)
+					       );
 		handlingIndex++;
 
 		var toggleLabel = sectionNode.getElementsByClassName(classNames[handlingIndex])[0];
@@ -140,11 +143,15 @@
 		});
 		newGroupForm.addEventListener("submit", function (event) {
 			event.preventDefault();
-			if (colorInputBox.value && colorInputBox.value.length > 0 && colorInputBox.checkValidity()) {
+			if (colorInputBox.value 
+			    && colorInputBox.value.length > 0 
+			    && colorInputBox.checkValidity()) {
 				console.log("submit OK");
 				createNewGroupInDict(wordGroupsDict, colorInputBox.value);
 				mainBlock.appendChild(
-					initSectionByBgColorFromTemplate(sessionTemplate, colorInputBox.value, wordGroupsDict)
+					initSectionByBgColorFromTemplate(sessionTemplate, 
+									 colorInputBox.value, 
+									 wordGroupsDict)
 				);
 			}
 			console.log("submit");
