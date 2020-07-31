@@ -96,7 +96,8 @@
 
 		// add highlight class style in CSS
 		if (!ruleExistenceDict[bgColorCode]) {
-			sheet.insertRule([".", selectorName, " { background: #", bgColorCode, " !important; }"].join(""), 0);
+			sheet.insertRule([".", selectorName, 
+					  " { background: #", bgColorCode, " !important; }"].join(""), 0);
 			ruleExistenceDict[bgColorCode] = true;
 			console.log(sheet);
 		}
