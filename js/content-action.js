@@ -154,7 +154,8 @@
 		// console.log(sender.tab ? "from a content script:" + sender.tab.url : "from the extension");
 
 		// remove all highlight first
-		[].slice.call(document.getElementsByClassName("chrome-extension-highlight")).forEach(function (e) {
+		[].slice.call(document.getElementsByClassName("chrome-extension-highlight"))
+			.forEach(function (e) {
 			var parentNode = e.parentNode;
 			while(e.firstChild) parentNode.insertBefore(e.firstChild, e);
 			parentNode.removeChild(e);
